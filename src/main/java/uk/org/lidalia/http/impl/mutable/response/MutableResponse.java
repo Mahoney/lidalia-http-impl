@@ -6,9 +6,9 @@ import uk.org.lidalia.http.api.immutable.response.ImmutableResponse;
 import uk.org.lidalia.http.api.mutable.MutableHeaderFields;
 import uk.org.lidalia.http.api.mutable.response.MutableResponseBody;
 import uk.org.lidalia.http.api.mutable.response.MutableResponseHeader;
+import uk.org.lidalia.http.api.response.Code;
 import uk.org.lidalia.http.api.response.Reason;
 import uk.org.lidalia.http.api.response.Response;
-import uk.org.lidalia.http.api.response.ResponseCode;
 import uk.org.lidalia.http.impl.response.AbstractResponse;
 import uk.org.lidalia.http.impl.response.ResponseStringParser;
 
@@ -40,35 +40,35 @@ public class MutableResponse extends AbstractResponse implements uk.org.lidalia.
 		this.body = body;
 	}
 
-	public MutableResponse(ResponseCode code) {
+	public MutableResponse(Code code) {
 		this(code, null, null, null);
 	}
 
-	public MutableResponse(ResponseCode code, Reason reason) {
+	public MutableResponse(Code code, Reason reason) {
 		this(code, reason, null, null);
 	}
 
-	public MutableResponse(ResponseCode code, MutableHeaderFields headers) {
+	public MutableResponse(Code code, MutableHeaderFields headers) {
 		this(code, null, headers, null);
 	}
 
-	public MutableResponse(ResponseCode code, Reason reason, MutableHeaderFields headers) {
+	public MutableResponse(Code code, Reason reason, MutableHeaderFields headers) {
 		this(code, reason, headers, null);
 	}
 
-	public MutableResponse(ResponseCode code, MutableResponseBody body) {
+	public MutableResponse(Code code, MutableResponseBody body) {
 		this(code, null, null, body);
 	}
 
-	public MutableResponse(ResponseCode code, Reason reason, MutableResponseBody body) {
+	public MutableResponse(Code code, Reason reason, MutableResponseBody body) {
 		this(code, reason, null, body);
 	}
 
-	public MutableResponse(ResponseCode code, MutableHeaderFields headers, MutableResponseBody body) {
+	public MutableResponse(Code code, MutableHeaderFields headers, MutableResponseBody body) {
 		this(code, null, headers, body);
 	}
 
-	public MutableResponse(ResponseCode code, Reason reason, MutableHeaderFields headers, MutableResponseBody body) {
+	public MutableResponse(Code code, Reason reason, MutableHeaderFields headers, MutableResponseBody body) {
 		this(new uk.org.lidalia.http.impl.mutable.response.MutableResponseHeader(code, reason, headers), body);
 	}
 

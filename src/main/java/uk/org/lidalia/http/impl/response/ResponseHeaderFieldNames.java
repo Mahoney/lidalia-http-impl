@@ -10,8 +10,8 @@ import java.util.Map;
 
 import uk.org.lidalia.http.api.exception.IllegalHeaderFieldNameException;
 import uk.org.lidalia.http.api.headerfield.HeaderFieldName;
-import uk.org.lidalia.http.api.headerfield.HeaderFieldNameRegistry;
-import uk.org.lidalia.http.impl.headers.PositiveSecondsHeaderFieldName;
+import uk.org.lidalia.http.impl.headerfield.HeaderFieldNameRegistry;
+import uk.org.lidalia.http.impl.headerfield.PositiveSecondsHeaderFieldName;
 
 public class ResponseHeaderFieldNames {
 	

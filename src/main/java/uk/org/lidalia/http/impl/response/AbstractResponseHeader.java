@@ -8,7 +8,7 @@ import org.joda.time.Seconds;
 
 import uk.org.lidalia.http.api.headerfield.HeaderFieldValue;
 import uk.org.lidalia.http.api.response.ResponseHeader;
-import uk.org.lidalia.http.impl.headers.PositiveSeconds;
+import uk.org.lidalia.http.impl.headerfield.PositiveSeconds;
 
 public abstract class AbstractResponseHeader implements ResponseHeader {
 

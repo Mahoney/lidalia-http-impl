@@ -4,9 +4,9 @@ import org.apache.commons.lang.Validate;
 
 import uk.org.lidalia.http.api.exception.InvalidResponseException;
 import uk.org.lidalia.http.api.immutable.ImmutableHeaderFields;
+import uk.org.lidalia.http.api.response.Code;
 import uk.org.lidalia.http.api.response.Reason;
 import uk.org.lidalia.http.api.response.Response;
-import uk.org.lidalia.http.api.response.ResponseCode;
 import uk.org.lidalia.http.impl.mutable.response.MutableResponse;
 import uk.org.lidalia.http.impl.response.AbstractResponse;
 import uk.org.lidalia.http.impl.response.ResponseStringParser;
@@ -36,35 +36,35 @@ public class ImmutableResponse extends AbstractResponse implements uk.org.lidali
 		this.body = body;
 	}
 	
-	public ImmutableResponse(ResponseCode code) {
+	public ImmutableResponse(Code code) {
 		this(code, null, null, null);
 	}
 	
-	public ImmutableResponse(ResponseCode code, Reason reason) {
+	public ImmutableResponse(Code code, Reason reason) {
 		this(code, reason, null, null);
 	}
 	
-	public ImmutableResponse(ResponseCode code, ImmutableHeaderFields headers) {
+	public ImmutableResponse(Code code, ImmutableHeaderFields headers) {
 		this(code, null, headers, null);
 	}
 
-	public ImmutableResponse(ResponseCode code, Reason reason, ImmutableHeaderFields headers) {
+	public ImmutableResponse(Code code, Reason reason, ImmutableHeaderFields headers) {
 		this(code, reason, headers, null);
 	}
 	
-	public ImmutableResponse(ResponseCode code, ImmutableResponseBody body) {
+	public ImmutableResponse(Code code, ImmutableResponseBody body) {
 		this(code, null, null, body);
 	}
 	
-	public ImmutableResponse(ResponseCode code, Reason reason, ImmutableResponseBody body) {
+	public ImmutableResponse(Code code, Reason reason, ImmutableResponseBody body) {
 		this(code, reason, null, body);
 	}
 	
-	public ImmutableResponse(ResponseCode code, ImmutableHeaderFields headers, ImmutableResponseBody body) {
+	public ImmutableResponse(Code code, ImmutableHeaderFields headers, ImmutableResponseBody body) {
 		this(code, null, headers, body);
 	}
 
-	public ImmutableResponse(ResponseCode code, Reason reason, ImmutableHeaderFields headers, ImmutableResponseBody body) {
+	public ImmutableResponse(Code code, Reason reason, ImmutableHeaderFields headers, ImmutableResponseBody body) {
 		this(new ImmutableResponseHeader(code, reason, headers), body);
 	}
 

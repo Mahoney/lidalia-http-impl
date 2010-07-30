@@ -3,14 +3,14 @@ package uk.org.lidalia.http.impl.response;
 import org.joda.time.Seconds;
 
 import uk.org.lidalia.http.api.headerfield.HeaderFieldValue;
+import uk.org.lidalia.http.api.response.Code;
 import uk.org.lidalia.http.api.response.Reason;
 import uk.org.lidalia.http.api.response.Response;
-import uk.org.lidalia.http.api.response.ResponseCode;
 
 public abstract class AbstractResponse implements Response {
 
 	@Override
-	public ResponseCode getCode() {
+	public Code getCode() {
 		return getHeader().getCode();
 	}
 

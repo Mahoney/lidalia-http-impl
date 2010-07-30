@@ -6,9 +6,9 @@ import org.joda.time.Seconds;
 import org.junit.Test;
 
 import uk.org.lidalia.http.api.Text;
-import uk.org.lidalia.http.api.headerfield.DefaultHeaderFieldValue;
-import uk.org.lidalia.http.api.headerfield.HeaderFieldNameRegistry;
-import uk.org.lidalia.http.impl.headers.PositiveSeconds;
+import uk.org.lidalia.http.impl.headerfield.DefaultHeaderFieldValue;
+import uk.org.lidalia.http.impl.headerfield.HeaderFieldNameRegistry;
+import uk.org.lidalia.http.impl.headerfield.PositiveSeconds;
 
 public class HeaderFieldsTest {
 

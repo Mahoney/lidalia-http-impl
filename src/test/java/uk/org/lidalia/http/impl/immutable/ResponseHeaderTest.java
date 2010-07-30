@@ -16,9 +16,9 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import uk.org.lidalia.http.api.exception.InvalidHeaderException;
 import uk.org.lidalia.http.api.response.Reason;
-import uk.org.lidalia.http.api.response.ResponseCode;
 import uk.org.lidalia.http.impl.AbstractHeaderFields;
 import uk.org.lidalia.http.impl.immutable.response.ImmutableResponseHeader;
+import uk.org.lidalia.http.impl.response.Code;
 
 
 @RunWith(PowerMockRunner.class)
@@ -31,7 +31,7 @@ public class ResponseHeaderTest {
 		replayAll();
 
 		ImmutableResponseHeader header = new ImmutableResponseHeader("HTTP/1.1 200 OK here\r\nheader1: value\r\nheader2: value\r\n");
-		assertSame(ResponseCode.OK, header.getCode());
+		assertSame(Code.OK, header.getCode());
 		assertEquals(new Reason("OK here"), header.getReason());
 		assertSame(headerFieldsMock, header.getHeaderFields());
 
@@ -44,7 +44,7 @@ public class ResponseHeaderTest {
 		replayAll();
 
 		ImmutableResponseHeader header = new ImmutableResponseHeader("HTTP/1.1 200 OK here\r\nheader1: value\r\nheader2: value");
-		assertSame(ResponseCode.OK, header.getCode());
+		assertSame(Code.OK, header.getCode());
 		assertEquals(new Reason("OK here"), header.getReason());
 		assertSame(headerFieldsMock, header.getHeaderFields());
 
@@ -57,7 +57,7 @@ public class ResponseHeaderTest {
 		replayAll();
 
 		ImmutableResponseHeader header = new ImmutableResponseHeader("HTTP/1.1 200 \r\nheader1: value\r\nheader2: value\r\n");
-		assertSame(ResponseCode.OK, header.getCode());
+		assertSame(Code.OK, header.getCode());
 		assertEquals(new Reason(""), header.getReason());
 		assertSame(headerFieldsMock, header.getHeaderFields());
 
@@ -70,7 +70,7 @@ public class ResponseHeaderTest {
 		replayAll();
 		
 		ImmutableResponseHeader header = new ImmutableResponseHeader("HTTP/1.1 200 OK here\r\n");
-		assertSame(ResponseCode.OK, header.getCode());
+		assertSame(Code.OK, header.getCode());
 		assertEquals(new Reason("OK here"), header.getReason());
 		assertSame(headerFieldsMock, header.getHeaderFields());
 		
@@ -83,7 +83,7 @@ public class ResponseHeaderTest {
 		replayAll();
 
 		ImmutableResponseHeader header = new ImmutableResponseHeader("HTTP/1.1 200 \r\n");
-		assertSame(ResponseCode.OK, header.getCode());
+		assertSame(Code.OK, header.getCode());
 		assertEquals(new Reason(""), header.getReason());
 		assertSame(headerFieldsMock, header.getHeaderFields());
 
