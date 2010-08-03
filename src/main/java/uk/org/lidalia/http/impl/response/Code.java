@@ -9,8 +9,8 @@ import java.util.concurrent.ConcurrentMap;
 
 import org.apache.commons.lang.Validate;
 
-import uk.org.lidalia.Utils;
 import uk.org.lidalia.http.api.response.Reason;
+import uk.org.lidalia.lang.Utils;
 
 public final class Code implements uk.org.lidalia.http.api.response.Code {
 	

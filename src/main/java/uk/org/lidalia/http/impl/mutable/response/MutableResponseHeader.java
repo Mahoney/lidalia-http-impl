@@ -4,7 +4,6 @@ import static uk.org.lidalia.http.impl.response.Code.Code;
 
 import java.util.regex.Matcher;
 
-import uk.org.lidalia.Utils;
 import uk.org.lidalia.http.api.exception.IllegalHeaderFieldValueException;
 import uk.org.lidalia.http.api.exception.InvalidHeaderException;
 import uk.org.lidalia.http.api.headerfield.HeaderField;
@@ -14,6 +13,7 @@ import uk.org.lidalia.http.api.response.Reason;
 import uk.org.lidalia.http.api.response.ResponseHeader;
 import uk.org.lidalia.http.impl.immutable.response.ImmutableResponseHeader;
 import uk.org.lidalia.http.impl.response.AbstractResponseHeader;
+import uk.org.lidalia.lang.Utils;
 
 public class MutableResponseHeader extends AbstractResponseHeader implements uk.org.lidalia.http.api.mutable.response.MutableResponseHeader {
 

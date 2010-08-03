@@ -1,6 +1,5 @@
 package uk.org.lidalia.http.impl.mutable.response;
 
-import uk.org.lidalia.Utils;
 import uk.org.lidalia.http.api.exception.InvalidResponseException;
 import uk.org.lidalia.http.api.immutable.response.ImmutableResponse;
 import uk.org.lidalia.http.api.mutable.MutableHeaderFields;
@@ -11,6 +10,7 @@ import uk.org.lidalia.http.api.response.Reason;
 import uk.org.lidalia.http.api.response.Response;
 import uk.org.lidalia.http.impl.response.AbstractResponse;
 import uk.org.lidalia.http.impl.response.ResponseStringParser;
+import uk.org.lidalia.lang.Utils;
 
 public class MutableResponse extends AbstractResponse implements uk.org.lidalia.http.api.mutable.response.MutableResponse {
 

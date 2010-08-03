@@ -1,6 +1,7 @@
 package uk.org.lidalia.http.impl.immutable.response;
 
-import uk.org.lidalia.http.api.mutable.response.MutableResponseBody;
+import uk.org.lidalia.http.api.response.ResponseBody;
+import uk.org.lidalia.http.impl.mutable.response.MutableResponseBody;
 
 public class ImmutableResponseBody implements uk.org.lidalia.http.api.immutable.response.ImmutableResponseBody {
 	
@@ -30,7 +31,6 @@ public class ImmutableResponseBody implements uk.org.lidalia.http.api.immutable.
 
 	@Override
 	public MutableResponseBody toMutable() {
-		// TODO Auto-generated method stub
-		return null;
+		return new MutableResponseBody(this);
 	}
 }
