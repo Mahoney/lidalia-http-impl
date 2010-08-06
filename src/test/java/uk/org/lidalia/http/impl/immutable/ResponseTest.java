@@ -1,11 +1,10 @@
 package uk.org.lidalia.http.impl.immutable;
 
-import static org.easymock.EasyMock.expect;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 import static org.powermock.api.easymock.PowerMock.createMock;
 import static org.powermock.api.easymock.PowerMock.createMockAndExpectNew;
-import static org.powermock.api.easymock.PowerMock.mockStatic;
+import static org.powermock.api.easymock.PowerMock.expectNew;
 import static org.powermock.api.easymock.PowerMock.replayAll;
 import static org.powermock.api.easymock.PowerMock.verifyAll;
 import static uk.org.lidalia.testutils.Assert.shouldThrow;
@@ -58,8 +57,7 @@ public class ResponseTest {
 	public void constructByStringDelegatesToHeaderAndBodyConstructByString() throws Exception {
 		ImmutableResponseHeader headerMock = createMockAndExpectNew(ImmutableResponseHeader.class, "header");
 		ImmutableResponseBody bodyMock = createMock(ImmutableResponseBody.class);
-		mockStatic(ImmutableResponseBody.class);
-		expect(ImmutableResponseBody.parse("body")).andReturn(bodyMock);
+		expectNew(ImmutableResponseBody.class, "body".getBytes()).andReturn(bodyMock);
 		replayAll();
 		
 		ImmutableResponse immutableResponse = new ImmutableResponse(

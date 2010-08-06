@@ -21,7 +21,7 @@ public class MutableResponse extends AbstractResponse implements uk.org.lidalia.
 		try {
 			ResponseStringParser responseStringParser = new ResponseStringParser(responseString);
 			this.header = new uk.org.lidalia.http.impl.mutable.response.MutableResponseHeader(responseStringParser.getHeaderString());
-			this.body = uk.org.lidalia.http.impl.mutable.response.MutableResponseBody.parse(responseStringParser.getBodyString());
+			this.body = new uk.org.lidalia.http.impl.mutable.response.MutableResponseBody(responseStringParser.getBodyString().getBytes());
 		} catch (Exception e) {
 			throw new InvalidResponseException(responseString, e);
 		}

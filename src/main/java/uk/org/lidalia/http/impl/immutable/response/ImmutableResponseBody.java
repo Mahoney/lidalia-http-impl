@@ -1,27 +1,27 @@
 package uk.org.lidalia.http.impl.immutable.response;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
 import uk.org.lidalia.http.api.response.ResponseBody;
 import uk.org.lidalia.http.impl.mutable.response.MutableResponseBody;
+import uk.org.lidalia.lang.Utils;
 
 public class ImmutableResponseBody implements uk.org.lidalia.http.api.immutable.response.ImmutableResponseBody {
 	
-	private final String body;
+	private final byte[] bytes;
 
-	private ImmutableResponseBody(String body) {
-		this.body = body;
+	public ImmutableResponseBody(byte[] bytes) {
+		this.bytes = Utils.copy(bytes);
 	}
-
-	public static ImmutableResponseBody parse(String bodyString) {
-		return bodyString == null ? null : new ImmutableResponseBody(bodyString);
-	}
-
-	public String getBody() {
-		return body;
+	
+	public ImmutableResponseBody(ResponseBody other) {
+		this(other.getBytes());
 	}
 	
 	@Override
 	public String toString() {
-		return body;
+		return bytes.length + " bytes in body";
 	}
 
 	@Override
@@ -32,5 +32,15 @@ public class ImmutableResponseBody implements uk.org.lidalia.http.api.immutable.
 	@Override
 	public MutableResponseBody toMutable() {
 		return new MutableResponseBody(this);
+	}
+
+	@Override
+	public byte[] getBytes() {
+		return Utils.copy(bytes);
+	}
+
+	@Override
+	public InputStream getInputStream() {
+		return new ByteArrayInputStream(bytes);
 	}
 }

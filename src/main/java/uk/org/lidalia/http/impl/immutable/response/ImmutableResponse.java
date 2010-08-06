@@ -20,7 +20,7 @@ public class ImmutableResponse extends AbstractResponse implements uk.org.lidali
 		try {
 			ResponseStringParser responseStringParser = new ResponseStringParser(responseString);
 			this.header = new ImmutableResponseHeader(responseStringParser.getHeaderString());
-			this.body = ImmutableResponseBody.parse(responseStringParser.getBodyString());
+			this.body = new ImmutableResponseBody(responseStringParser.getBodyString().getBytes());
 		} catch (Exception e) {
 			throw new InvalidResponseException(responseString, e);
 		}
