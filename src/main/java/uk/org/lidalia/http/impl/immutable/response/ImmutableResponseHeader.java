@@ -1,6 +1,6 @@
 package uk.org.lidalia.http.impl.immutable.response;
 
-import static uk.org.lidalia.http.impl.response.Code.Code;
+import static uk.org.lidalia.http.api.response.Code.Code;
 
 import java.util.regex.Matcher;
 

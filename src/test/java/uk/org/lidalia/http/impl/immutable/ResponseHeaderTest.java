@@ -18,7 +18,7 @@ import uk.org.lidalia.http.api.exception.InvalidHeaderException;
 import uk.org.lidalia.http.api.response.Reason;
 import uk.org.lidalia.http.impl.AbstractHeaderFields;
 import uk.org.lidalia.http.impl.immutable.response.ImmutableResponseHeader;
-import uk.org.lidalia.http.impl.response.Code;
+import uk.org.lidalia.http.api.response.Code;
 
 
 @RunWith(PowerMockRunner.class)
