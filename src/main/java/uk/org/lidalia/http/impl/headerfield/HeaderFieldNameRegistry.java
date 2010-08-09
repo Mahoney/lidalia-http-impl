@@ -12,6 +12,10 @@ import uk.org.lidalia.http.api.headerfield.HeaderFieldName;
 public class HeaderFieldNameRegistry {
 
 	private static final ConcurrentMap<String, HeaderFieldName> headerFieldNames = new ConcurrentHashMap<String, HeaderFieldName>();
+	
+	static {
+		registerHeaderFieldName(new PositiveSecondsHeaderFieldName("Age"));
+	}
 
 	public static HeaderFieldName get(String headerName) throws IllegalHeaderFieldNameException {
 		Validate.notNull(headerName, "headerName is null");

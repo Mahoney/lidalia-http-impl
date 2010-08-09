@@ -7,6 +7,7 @@ import uk.org.lidalia.http.api.immutable.ImmutableHeaderFields;
 import uk.org.lidalia.http.api.response.Code;
 import uk.org.lidalia.http.api.response.Reason;
 import uk.org.lidalia.http.api.response.Response;
+import uk.org.lidalia.http.impl.headerfield.HeaderField;
 import uk.org.lidalia.http.impl.mutable.response.MutableResponse;
 import uk.org.lidalia.http.impl.response.AbstractResponse;
 import uk.org.lidalia.http.impl.response.ResponseStringParser;
@@ -37,11 +38,11 @@ public class ImmutableResponse extends AbstractResponse implements uk.org.lidali
 	}
 	
 	public ImmutableResponse(Code code) {
-		this(code, null, null, null);
+		this(code, null, (ImmutableHeaderFields) null, null);
 	}
 	
 	public ImmutableResponse(Code code, Reason reason) {
-		this(code, reason, null, null);
+		this(code, reason, (ImmutableHeaderFields) null, null);
 	}
 	
 	public ImmutableResponse(Code code, ImmutableHeaderFields headers) {
@@ -70,6 +71,22 @@ public class ImmutableResponse extends AbstractResponse implements uk.org.lidali
 
 	public ImmutableResponse(Response response) {
 		this(response.getHeader().toImmutable(), response.getBody().toImmutable());
+	}
+	
+	public ImmutableResponse(Code code, HeaderField... headers) {
+		this(code, null, null, headers);
+	}
+	
+	public ImmutableResponse(Code code, Reason reason, HeaderField... headers) {
+		this(code, reason, null, headers);
+	}
+	
+	public ImmutableResponse(Code code, ImmutableResponseBody body, HeaderField... headers) {
+		this(code, null, body, headers);
+	}
+
+	public ImmutableResponse(Code code, Reason reason, ImmutableResponseBody body, HeaderField... headers) {
+		this(new ImmutableResponseHeader(code, reason, headers), body);
 	}
 
 	@Override

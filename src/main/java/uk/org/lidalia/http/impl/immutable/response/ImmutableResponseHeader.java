@@ -12,6 +12,7 @@ import uk.org.lidalia.http.api.mutable.response.MutableResponseHeader;
 import uk.org.lidalia.http.api.response.Code;
 import uk.org.lidalia.http.api.response.Reason;
 import uk.org.lidalia.http.api.response.ResponseHeader;
+import uk.org.lidalia.http.impl.headerfield.HeaderField;
 import uk.org.lidalia.http.impl.response.AbstractResponseHeader;
 import uk.org.lidalia.lang.Utils;
 
@@ -22,11 +23,11 @@ public class ImmutableResponseHeader extends AbstractResponseHeader implements u
 	private final ImmutableHeaderFields headers;
 	
 	public ImmutableResponseHeader(Code code) {
-		this(code, null, null);
+		this(code, null, (ImmutableHeaderFields) null);
 	}
 	
 	public ImmutableResponseHeader(Code code, Reason reason) {
-		this(code, reason, null);
+		this(code, reason, (ImmutableHeaderFields) null);
 	}
 	
 	public ImmutableResponseHeader(Code code, ImmutableHeaderFields headers) {
@@ -38,6 +39,17 @@ public class ImmutableResponseHeader extends AbstractResponseHeader implements u
 		this.code = code;
 		this.reason = Utils.valueOrDefault(reason, code.getDefaultReason());
 		this.headers = Utils.valueOrDefault(headers, new uk.org.lidalia.http.impl.immutable.ImmutableHeaderFields());
+	}
+	
+	public ImmutableResponseHeader(Code code, HeaderField... headers) {
+		this(code, null, headers);
+	}
+
+	public ImmutableResponseHeader(Code code, Reason reason, HeaderField... headers) {
+		Validate.notNull(code);
+		this.code = code;
+		this.reason = Utils.valueOrDefault(reason, code.getDefaultReason());
+		this.headers = new uk.org.lidalia.http.impl.immutable.ImmutableHeaderFields(headers);
 	}
 	
 	public ImmutableResponseHeader(String headerString) throws InvalidHeaderException {

@@ -22,7 +22,7 @@ import uk.org.lidalia.http.impl.immutable.response.ImmutableResponseBody;
 import uk.org.lidalia.http.impl.immutable.response.ImmutableResponseHeader;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ImmutableResponse.class, ImmutableResponseBody.class})
+@PrepareForTest({ImmutableResponse.class})
 public class ResponseTest {
 
 	@Test
@@ -56,8 +56,8 @@ public class ResponseTest {
 	@Test
 	public void constructByStringDelegatesToHeaderAndBodyConstructByString() throws Exception {
 		ImmutableResponseHeader headerMock = createMockAndExpectNew(ImmutableResponseHeader.class, "header");
-		ImmutableResponseBody bodyMock = createMock(ImmutableResponseBody.class);
-		expectNew(ImmutableResponseBody.class, "body".getBytes()).andReturn(bodyMock);
+		byte[] bytes = "body".getBytes();
+		ImmutableResponseBody bodyMock = createMockAndExpectNew(ImmutableResponseBody.class, bytes);
 		replayAll();
 		
 		ImmutableResponse immutableResponse = new ImmutableResponse(
