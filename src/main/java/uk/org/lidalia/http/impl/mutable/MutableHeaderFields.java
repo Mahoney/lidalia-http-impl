@@ -9,6 +9,7 @@ import uk.org.lidalia.http.api.headerfield.HeaderFieldName;
 import uk.org.lidalia.http.api.headerfield.HeaderField;
 import uk.org.lidalia.http.api.immutable.ImmutableHeaderFields;
 import uk.org.lidalia.http.impl.AbstractHeaderFields;
+import uk.org.lidalia.http.impl.headerfield.HeaderFieldParsers;
 
 public class MutableHeaderFields extends AbstractHeaderFields implements uk.org.lidalia.http.api.mutable.MutableHeaderFields {
 
@@ -46,7 +47,7 @@ public class MutableHeaderFields extends AbstractHeaderFields implements uk.org.
 		if (existingHeader == null) {
 			headers.put(name, header);
 		} else {
-			headers.put(name, new uk.org.lidalia.http.impl.headerfield.HeaderField(name, name.parseValue(existingHeader.getValue() + ", " + header.getValue())));
+			headers.put(name, new uk.org.lidalia.http.impl.headerfield.HeaderField(name, HeaderFieldParsers.parse(name, existingHeader.getValue() + ", " + header.getValue())));
 		}
 	}
 

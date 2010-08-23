@@ -1,6 +1,7 @@
 package uk.org.lidalia.http.impl.immutable.response;
 
 import static uk.org.lidalia.http.api.response.Code.Code;
+import static uk.org.lidalia.http.api.response.Reason.Reason;
 
 import java.util.regex.Matcher;
 
@@ -56,7 +57,7 @@ public class ImmutableResponseHeader extends AbstractResponseHeader implements u
 		try {
 			Matcher headerMatcher = parseHeader(headerString);
 			code = Code(Integer.valueOf(headerMatcher.group(1)));
-			reason = new Reason(headerMatcher.group(2));
+			reason = Reason(headerMatcher.group(2));
 			headers = new uk.org.lidalia.http.impl.immutable.ImmutableHeaderFields(headerMatcher.group(3));
 		} catch (Exception e) {
 			throw new InvalidHeaderException(headerString, e);

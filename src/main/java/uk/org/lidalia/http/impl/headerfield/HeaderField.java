@@ -1,5 +1,7 @@
 package uk.org.lidalia.http.impl.headerfield;
 
+import static uk.org.lidalia.http.api.headerfield.HeaderFieldName.HeaderFieldName;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 
@@ -17,8 +19,8 @@ public final class HeaderField implements Immutable, uk.org.lidalia.http.api.hea
 	public HeaderField(String headerString) throws IllegalHeaderFieldNameException, IllegalHeaderFieldValueException {
 		String headerName = StringUtils.substringBefore(headerString, ":");
 		String headerValue = StringUtils.substringAfter(headerString, ":").trim();
-		this.name = HeaderFieldNameRegistry.get(headerName);
-		this.value = name.parseValue(headerValue);
+		this.name = HeaderFieldName(headerName);
+		this.value = HeaderFieldParsers.parse(this.name, headerValue);
 	}
 
 	public HeaderField(HeaderFieldName name, HeaderFieldValue value) {

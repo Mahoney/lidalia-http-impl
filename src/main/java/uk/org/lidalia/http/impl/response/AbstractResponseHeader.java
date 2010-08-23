@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.Validate;
 import org.joda.time.Seconds;
 
+import uk.org.lidalia.http.api.headerfield.HeaderFieldName;
 import uk.org.lidalia.http.api.headerfield.HeaderFieldValue;
 import uk.org.lidalia.http.api.response.ResponseHeader;
 import uk.org.lidalia.http.impl.headerfield.PositiveSeconds;
@@ -41,7 +42,7 @@ public abstract class AbstractResponseHeader implements ResponseHeader {
 
 	@Override
 	public Seconds getAge() {
-		PositiveSeconds positiveSeconds = (PositiveSeconds) getHeaderFields().get(ResponseHeaderFieldNames.AGE);
+		PositiveSeconds positiveSeconds = (PositiveSeconds) getHeaderFields().get(HeaderFieldName.AGE);
 		return positiveSeconds == null ? null : positiveSeconds.getSeconds();
 	}
 

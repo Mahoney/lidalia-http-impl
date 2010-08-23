@@ -14,6 +14,7 @@ import uk.org.lidalia.http.api.exception.IllegalHeaderFieldValueException;
 import uk.org.lidalia.http.api.headerfield.HeaderFieldName;
 import uk.org.lidalia.http.api.headerfield.HeaderFieldValue;
 import uk.org.lidalia.http.api.headerfield.HeaderField;
+import uk.org.lidalia.http.impl.headerfield.HeaderFieldParsers;
 
 public abstract class AbstractHeaderFields implements HeaderFields {
 
@@ -43,7 +44,7 @@ public abstract class AbstractHeaderFields implements HeaderFields {
 			if (existingHeader == null) {
 				headers.put(name, header);
 			} else {
-				headers.put(name, new uk.org.lidalia.http.impl.headerfield.HeaderField(name, name.parseValue(existingHeader.getValue() + ", " + header.getValue())));
+				headers.put(name, new uk.org.lidalia.http.impl.headerfield.HeaderField(name, HeaderFieldParsers.parse(name, existingHeader.getValue() + ", " + header.getValue())));
 			}
 		}
 	}

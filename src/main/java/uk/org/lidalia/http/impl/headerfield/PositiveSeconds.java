@@ -1,5 +1,7 @@
 package uk.org.lidalia.http.impl.headerfield;
 
+import static uk.org.lidalia.http.api.Text.Text;
+
 import org.apache.commons.lang.Validate;
 import org.joda.time.Seconds;
 
@@ -20,6 +22,6 @@ public final class PositiveSeconds extends AbstractHeaderFieldValue<Seconds> {
 
 	@Override
 	public Text toText() {
-		return new Text(Integer.toString(wrappedValue.getSeconds()));
+		return Text(Integer.toString(wrappedValue.getSeconds()));
 	}
 }
