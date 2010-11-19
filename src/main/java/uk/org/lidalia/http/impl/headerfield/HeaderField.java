@@ -11,7 +11,7 @@ import uk.org.lidalia.http.api.headerfield.HeaderFieldName;
 import uk.org.lidalia.http.api.headerfield.HeaderFieldValue;
 import uk.org.lidalia.lang.Immutable;
 
-public final class HeaderField implements Immutable, uk.org.lidalia.http.api.headerfield.HeaderField {
+public final class HeaderField implements uk.org.lidalia.http.api.headerfield.HeaderField {
 	
 	private final HeaderFieldName name;
 	private final HeaderFieldValue value;
@@ -30,10 +30,12 @@ public final class HeaderField implements Immutable, uk.org.lidalia.http.api.hea
 		this.value = value;
 	}
 	
+	@Override
 	public HeaderFieldName getName() {
 		return name;
 	}
 	
+	@Override
 	public HeaderFieldValue getValue() {
 		return value;
 	}

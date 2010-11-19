@@ -83,6 +83,7 @@ public class ImmutableResponseHeader extends AbstractResponseHeader implements u
 		return headers;
 	}
 
+	@Override
 	public MutableResponseHeader toMutable() {
 		return new uk.org.lidalia.http.impl.mutable.response.MutableResponseHeader(this);
 	}
