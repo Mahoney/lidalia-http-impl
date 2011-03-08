@@ -1,6 +1,6 @@
 package uk.org.lidalia.http.impl.immutable;
 
-import static uk.org.lidalia.testutils.Assert.shouldThrow;
+import static uk.org.lidalia.test.Assert.shouldThrow;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 import static org.powermock.api.easymock.PowerMock.createMockAndExpectNew;

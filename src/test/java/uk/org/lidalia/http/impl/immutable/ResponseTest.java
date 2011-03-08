@@ -5,7 +5,7 @@ import static org.junit.Assert.assertSame;
 import static org.powermock.api.easymock.PowerMock.createMockAndExpectNew;
 import static org.powermock.api.easymock.PowerMock.replayAll;
 import static org.powermock.api.easymock.PowerMock.verifyAll;
-import static uk.org.lidalia.testutils.Assert.shouldThrow;
+import static uk.org.lidalia.test.Assert.shouldThrow;
 
 import java.util.concurrent.Callable;
 
