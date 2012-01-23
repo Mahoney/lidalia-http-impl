@@ -1,6 +1,6 @@
 package uk.org.lidalia.http.impl.immutable.response;
 
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 
 import uk.org.lidalia.http.api.exception.InvalidResponseException;
 import uk.org.lidalia.http.api.immutable.ImmutableHeaderFields;

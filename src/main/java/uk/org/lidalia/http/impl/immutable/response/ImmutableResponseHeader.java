@@ -5,7 +5,7 @@ import static uk.org.lidalia.http.api.response.Reason.Reason;
 
 import java.util.regex.Matcher;
 
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 
 import uk.org.lidalia.http.api.exception.InvalidHeaderException;
 import uk.org.lidalia.http.api.immutable.ImmutableHeaderFields;
