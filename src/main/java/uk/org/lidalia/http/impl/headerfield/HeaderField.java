@@ -9,7 +9,6 @@ import uk.org.lidalia.http.api.exception.IllegalHeaderFieldNameException;
 import uk.org.lidalia.http.api.exception.IllegalHeaderFieldValueException;
 import uk.org.lidalia.http.api.headerfield.HeaderFieldName;
 import uk.org.lidalia.http.api.headerfield.HeaderFieldValue;
-import uk.org.lidalia.lang.Immutable;
 
 public final class HeaderField implements uk.org.lidalia.http.api.headerfield.HeaderField {
 	
