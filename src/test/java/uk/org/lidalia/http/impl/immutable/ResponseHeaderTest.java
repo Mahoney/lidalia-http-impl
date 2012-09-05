@@ -1,12 +1,12 @@
 package uk.org.lidalia.http.impl.immutable;
 
-import static uk.org.lidalia.test.Assert.shouldThrow;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 import static org.powermock.api.easymock.PowerMock.createMockAndExpectNew;
 import static org.powermock.api.easymock.PowerMock.replayAll;
 import static org.powermock.api.easymock.PowerMock.verifyAll;
 import static uk.org.lidalia.http.api.response.Reason.Reason;
+import static uk.org.lidalia.test.ShouldThrow.shouldThrow;
 
 import java.util.concurrent.Callable;
 
@@ -37,7 +37,7 @@ public class ResponseHeaderTest {
 
 		verifyAll();
 	}
-	
+
 	@Test
 	public void stringConstructorCanHaveNoCRLFAfterLastHeader() throws Exception {
 		AbstractHeaderFields headerFieldsMock = createMockAndExpectNew(ImmutableHeaderFields.class, "header1: value\r\nheader2: value");
@@ -50,7 +50,7 @@ public class ResponseHeaderTest {
 
 		verifyAll();
 	}
-	
+
 	@Test
 	public void stringConstructorCanHaveEmptyReason() throws Throwable {
 		AbstractHeaderFields headerFieldsMock = createMockAndExpectNew(ImmutableHeaderFields.class, "header1: value\r\nheader2: value\r\n");
@@ -68,15 +68,15 @@ public class ResponseHeaderTest {
 	public void stringConstructorCanHaveEmptyHeaders() throws Throwable {
 		AbstractHeaderFields headerFieldsMock = createMockAndExpectNew(ImmutableHeaderFields.class, "");
 		replayAll();
-		
+
 		ImmutableResponseHeader header = new ImmutableResponseHeader("HTTP/1.1 200 OK here\r\n");
 		assertSame(Code.OK, header.getCode());
 		assertEquals(Reason("OK here"), header.getReason());
 		assertSame(headerFieldsMock, header.getHeaderFields());
-		
+
 		verifyAll();
 	}
-	
+
 	@Test
 	public void stringConstructorCanHaveEmptyReasonAndEmptyHeaders() throws Throwable {
 		AbstractHeaderFields headerFieldsMock = createMockAndExpectNew(ImmutableHeaderFields.class, "");
@@ -113,15 +113,15 @@ public class ResponseHeaderTest {
 		final String headerString = "HTTP/1.1 0200 OK";
 		assertStringConstructorThrowsInvalidHeaderException(headerString);
 	}
-	
+
 	private void assertStringConstructorThrowsInvalidHeaderException(final String headerString) throws Throwable {
 		InvalidHeaderException exception = shouldThrow(InvalidHeaderException.class, new Callable<Void>() {
-			@Override
-			public Void call() throws Exception {
-				new ImmutableResponseHeader(headerString);
-				return null;
-			}
-		});
+            @Override
+            public Void call() throws Exception {
+                new ImmutableResponseHeader(headerString);
+                return null;
+            }
+        });
 
 		assertEquals("Unable to parse [" + headerString + "] into a valid HTTP Header", exception.getMessage());
 		assertSame(IllegalArgumentException.class, exception.getCause().getClass());

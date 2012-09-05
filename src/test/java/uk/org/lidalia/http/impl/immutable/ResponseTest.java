@@ -5,7 +5,7 @@ import static org.junit.Assert.assertSame;
 import static org.powermock.api.easymock.PowerMock.createMockAndExpectNew;
 import static org.powermock.api.easymock.PowerMock.replayAll;
 import static org.powermock.api.easymock.PowerMock.verifyAll;
-import static uk.org.lidalia.test.Assert.shouldThrow;
+import static uk.org.lidalia.test.ShouldThrow.shouldThrow;
 
 import java.util.concurrent.Callable;
 
@@ -26,7 +26,7 @@ public class ResponseTest {
 
 	@Test
 	public void constructedWithNullHeaderThrowsIllegalArgumentException() throws Throwable {
-		shouldThrow(NullPointerException.class, new Callable<Void>() {
+        shouldThrow(NullPointerException.class, new Callable<Void>() {
             @Override
             public Void call() throws Exception {
                 new ImmutableResponse((ImmutableResponseHeader) null, (ImmutableResponseBody) null);
@@ -38,12 +38,12 @@ public class ResponseTest {
 	@Test
 	public void constructByStringWithNoDoubleLineBreakThrowsInvalidResponseException() throws Throwable {
 		InvalidResponseException exception = shouldThrow(InvalidResponseException.class, new Callable<Void>() {
-			@Override
-			public Void call() throws Exception {
-				new ImmutableResponse("HTTP/1.1 200 OK\r\n");
-				return null;
-			}
-		});
+            @Override
+            public Void call() throws Exception {
+                new ImmutableResponse("HTTP/1.1 200 OK\r\n");
+                return null;
+            }
+        });
 
 		assertEquals("Unable to parse [HTTP/1.1 200 OK\r\n] into a valid HTTP Response", exception.getMessage());
 		assertSame(IllegalArgumentException.class, exception.getCause().getClass());
