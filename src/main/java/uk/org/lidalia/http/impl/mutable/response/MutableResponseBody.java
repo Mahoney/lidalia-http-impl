@@ -11,11 +11,11 @@ import uk.org.lidalia.lang.Utils;
 public class MutableResponseBody implements uk.org.lidalia.http.api.mutable.response.MutableResponseBody {
 
 	private final byte[] bytes;
-	
+
 	public MutableResponseBody(byte[] bytes) {
-		this.bytes = Utils.copy(bytes);
+		this.bytes = Utils.copyOf(bytes);
 	}
-	
+
 	public MutableResponseBody(ResponseBody other) {
 		this(other.getBytes());
 	}

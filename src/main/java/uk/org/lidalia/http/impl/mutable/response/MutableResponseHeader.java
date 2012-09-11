@@ -2,6 +2,7 @@ package uk.org.lidalia.http.impl.mutable.response;
 
 import static uk.org.lidalia.http.api.response.Code.Code;
 import static uk.org.lidalia.http.api.response.Reason.Reason;
+import static uk.org.lidalia.lang.RichOptional.fromNullable;
 
 import java.util.regex.Matcher;
 
@@ -41,8 +42,8 @@ public class MutableResponseHeader extends AbstractResponseHeader implements uk.
 	public MutableResponseHeader(Code code, Reason reason, MutableHeaderFields headers) {
 		this.code = code;
 		Reason defaultReason = code == null ? null : code.getDefaultReason();
-		this.reason = Utils.valueOrDefault(reason, defaultReason);
-		this.headers = Utils.valueOrDefault(headers, new uk.org.lidalia.http.impl.mutable.MutableHeaderFields());
+		this.reason = fromNullable(reason).or(defaultReason);
+		this.headers = fromNullable(headers).or(new uk.org.lidalia.http.impl.mutable.MutableHeaderFields());
 	}
 
 	public MutableResponseHeader(String headerString) throws InvalidHeaderException {

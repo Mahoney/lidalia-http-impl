@@ -8,17 +8,17 @@ import uk.org.lidalia.http.impl.mutable.response.MutableResponseBody;
 import uk.org.lidalia.lang.Utils;
 
 public class ImmutableResponseBody implements uk.org.lidalia.http.api.immutable.response.ImmutableResponseBody {
-	
+
 	private final byte[] bytes;
 
 	public ImmutableResponseBody(byte[] bytes) {
-		this.bytes = Utils.copy(bytes);
+		this.bytes = Utils.copyOf(bytes);
 	}
-	
+
 	public ImmutableResponseBody(ResponseBody other) {
 		this(other.getBytes());
 	}
-	
+
 	@Override
 	public String toString() {
 		return bytes.length + " bytes in body";
@@ -36,7 +36,7 @@ public class ImmutableResponseBody implements uk.org.lidalia.http.api.immutable.
 
 	@Override
 	public byte[] getBytes() {
-		return Utils.copy(bytes);
+		return Utils.copyOf(bytes);
 	}
 
 	@Override

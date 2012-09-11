@@ -12,6 +12,8 @@ import uk.org.lidalia.http.impl.response.AbstractResponse;
 import uk.org.lidalia.http.impl.response.ResponseStringParser;
 import uk.org.lidalia.lang.Utils;
 
+import static uk.org.lidalia.lang.RichOptional.fromNullable;
+
 public class MutableResponse extends AbstractResponse implements uk.org.lidalia.http.api.mutable.response.MutableResponse {
 
 	private final MutableResponseHeader header;
@@ -36,7 +38,7 @@ public class MutableResponse extends AbstractResponse implements uk.org.lidalia.
 	}
 
 	public MutableResponse(MutableResponseHeader header, MutableResponseBody body) {
-		this.header = Utils.valueOrDefault(header, new uk.org.lidalia.http.impl.mutable.response.MutableResponseHeader());
+		this.header = fromNullable(header).or(new uk.org.lidalia.http.impl.mutable.response.MutableResponseHeader());
 		this.body = body;
 	}
 
