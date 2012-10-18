@@ -10,7 +10,6 @@ import uk.org.lidalia.http.api.response.Reason;
 import uk.org.lidalia.http.api.response.Response;
 import uk.org.lidalia.http.impl.response.AbstractResponse;
 import uk.org.lidalia.http.impl.response.ResponseStringParser;
-import uk.org.lidalia.lang.Utils;
 
 import static uk.org.lidalia.lang.RichOptional.fromNullable;
 

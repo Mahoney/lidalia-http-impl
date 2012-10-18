@@ -16,7 +16,6 @@ import uk.org.lidalia.http.api.response.Reason;
 import uk.org.lidalia.http.api.response.ResponseHeader;
 import uk.org.lidalia.http.impl.headerfield.HeaderField;
 import uk.org.lidalia.http.impl.response.AbstractResponseHeader;
-import uk.org.lidalia.lang.Utils;
 
 public class ImmutableResponseHeader extends AbstractResponseHeader implements uk.org.lidalia.http.api.immutable.response.ImmutableResponseHeader {
 

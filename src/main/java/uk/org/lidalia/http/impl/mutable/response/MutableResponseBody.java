@@ -5,15 +5,13 @@ import java.io.InputStream;
 
 import uk.org.lidalia.http.api.response.ResponseBody;
 import uk.org.lidalia.http.impl.immutable.response.ImmutableResponseBody;
-import uk.org.lidalia.lang.Utils;
-
 
 public class MutableResponseBody implements uk.org.lidalia.http.api.mutable.response.MutableResponseBody {
 
 	private final byte[] bytes;
 
 	public MutableResponseBody(byte[] bytes) {
-		this.bytes = Utils.copyOf(bytes);
+		this.bytes = bytes.clone();
 	}
 
 	public MutableResponseBody(ResponseBody other) {

@@ -17,11 +17,11 @@ public final class PositiveSeconds extends AbstractHeaderFieldValue<Seconds> {
 	}
 
 	public Seconds getSeconds() {
-		return wrappedValue;
+		return getWrappedValue();
 	}
 
 	@Override
 	public Text toText() {
-		return Text(Integer.toString(wrappedValue.getSeconds()));
+		return Text(Integer.toString(getWrappedValue().getSeconds()));
 	}
 }
