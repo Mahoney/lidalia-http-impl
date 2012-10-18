@@ -13,61 +13,61 @@ import uk.org.lidalia.http.impl.headerfield.HeaderFieldParsers;
 
 public class MutableHeaderFields extends AbstractHeaderFields implements uk.org.lidalia.http.api.mutable.MutableHeaderFields {
 
-	public MutableHeaderFields() {
-		super();
-	}
+    public MutableHeaderFields() {
+        super();
+    }
 
-	public MutableHeaderFields(String headersString) throws IllegalHeaderFieldNameException, IllegalHeaderFieldValueException {
-		super(headersString);
-	}
+    public MutableHeaderFields(String headersString) throws IllegalHeaderFieldNameException, IllegalHeaderFieldValueException {
+        super(headersString);
+    }
 
-	public MutableHeaderFields(HeaderField... newHeaders) throws IllegalHeaderFieldValueException {
-		super(newHeaders);
-	}
+    public MutableHeaderFields(HeaderField... newHeaders) throws IllegalHeaderFieldValueException {
+        super(newHeaders);
+    }
 
-	public MutableHeaderFields(HeaderFields headerFields) {
-		super(headerFields);
-	}
+    public MutableHeaderFields(HeaderFields headerFields) {
+        super(headerFields);
+    }
 
-	@Override
-	public Iterator<HeaderField> iterator() {
-		return headers.values().iterator();
-	}
-	
-	@Override
-	public void set(HeaderField header) {
-		HeaderFieldName name = header.getName();
-		headers.put(name, header);
-	}
+    @Override
+    public Iterator<HeaderField> iterator() {
+        return headers.values().iterator();
+    }
 
-	@Override
-	public void add(HeaderField header) throws IllegalHeaderFieldValueException {
-		HeaderFieldName name = header.getName();
-		HeaderField existingHeader = headers.get(name);
-		if (existingHeader == null) {
-			headers.put(name, header);
-		} else {
-			headers.put(name, new uk.org.lidalia.http.impl.headerfield.HeaderField(name, HeaderFieldParsers.parse(name, existingHeader.getValue() + ", " + header.getValue())));
-		}
-	}
+    @Override
+    public void set(HeaderField header) {
+        HeaderFieldName name = header.getName();
+        headers.put(name, header);
+    }
 
-	@Override
-	public void clear() {
-		headers.clear();
-	}
+    @Override
+    public void add(HeaderField header) throws IllegalHeaderFieldValueException {
+        HeaderFieldName name = header.getName();
+        HeaderField existingHeader = headers.get(name);
+        if (existingHeader == null) {
+            headers.put(name, header);
+        } else {
+            headers.put(name, new uk.org.lidalia.http.impl.headerfield.HeaderField(name, HeaderFieldParsers.parse(name, existingHeader.getValue() + ", " + header.getValue())));
+        }
+    }
 
-	@Override
-	public boolean remove(HeaderField header) {
-		return headers.remove(header) != null;
-	}
+    @Override
+    public void clear() {
+        headers.clear();
+    }
 
-	@Override
-	public ImmutableHeaderFields toImmutable() {
-		return new uk.org.lidalia.http.impl.immutable.ImmutableHeaderFields(this);
-	}
+    @Override
+    public boolean remove(HeaderField header) {
+        return headers.remove(header) != null;
+    }
 
-	@Override
-	public MutableHeaderFields toMutable() {
-		return this;
-	}
+    @Override
+    public ImmutableHeaderFields toImmutable() {
+        return new uk.org.lidalia.http.impl.immutable.ImmutableHeaderFields(this);
+    }
+
+    @Override
+    public MutableHeaderFields toMutable() {
+        return this;
+    }
 }

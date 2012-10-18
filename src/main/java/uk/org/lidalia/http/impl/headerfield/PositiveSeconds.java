@@ -10,18 +10,18 @@ import uk.org.lidalia.http.api.exception.IllegalHeaderFieldValueException;
 
 public final class PositiveSeconds extends AbstractHeaderFieldValue<Seconds> {
 
-	public PositiveSeconds(Seconds seconds) throws IllegalHeaderFieldValueException {
-		super(seconds);
-		Validate.notNull(seconds, "seconds is null");
-		Validate.isTrue(seconds.getSeconds() >= 0, "seconds is negative");
-	}
+    public PositiveSeconds(Seconds seconds) throws IllegalHeaderFieldValueException {
+        super(seconds);
+        Validate.notNull(seconds, "seconds is null");
+        Validate.isTrue(seconds.getSeconds() >= 0, "seconds is negative");
+    }
 
-	public Seconds getSeconds() {
-		return getWrappedValue();
-	}
+    public Seconds getSeconds() {
+        return getWrappedValue();
+    }
 
-	@Override
-	public Text toText() {
-		return Text(Integer.toString(getWrappedValue().getSeconds()));
-	}
+    @Override
+    public Text toText() {
+        return Text(Integer.toString(getWrappedValue().getSeconds()));
+    }
 }

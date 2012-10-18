@@ -9,39 +9,39 @@ import uk.org.lidalia.http.api.response.Response;
 
 public abstract class AbstractResponse implements Response {
 
-	@Override
-	public Code getCode() {
-		return getHeader().getCode();
-	}
+    @Override
+    public Code getCode() {
+        return getHeader().getCode();
+    }
 
-	@Override
-	public Reason getReason() {
-		return getHeader().getReason();
-	}
-	
-	@Override
-	public HeaderFieldValue getAcceptRanges() {
-		return getHeader().getAcceptRanges();
-	}
+    @Override
+    public Reason getReason() {
+        return getHeader().getReason();
+    }
 
-	@Override
-	public Seconds getAge() {
-		return getHeader().getAge();
-	}
+    @Override
+    public HeaderFieldValue getAcceptRanges() {
+        return getHeader().getAcceptRanges();
+    }
 
-	@Override
-	public HeaderFieldValue getEtag() {
-		return getHeader().getEtag();
-	}
+    @Override
+    public Seconds getAge() {
+        return getHeader().getAge();
+    }
 
-	@Override
-	public HeaderFieldValue getLocation() {
-		return getHeader().getLocation();
-	}
+    @Override
+    public HeaderFieldValue getEtag() {
+        return getHeader().getEtag();
+    }
 
-	@Override
-	public String toString() {
-		return getHeader() + "\r\n" + getBody();
-	}
-	
+    @Override
+    public HeaderFieldValue getLocation() {
+        return getHeader().getLocation();
+    }
+
+    @Override
+    public String toString() {
+        return getHeader() + "\r\n" + getBody();
+    }
+
 }

@@ -8,38 +8,38 @@ import uk.org.lidalia.http.impl.mutable.response.MutableResponseBody;
 
 public class ImmutableResponseBody implements uk.org.lidalia.http.api.immutable.response.ImmutableResponseBody {
 
-	private final byte[] bytes;
+    private final byte[] bytes;
 
-	public ImmutableResponseBody(byte[] bytes) {
-		this.bytes = bytes.clone();
-	}
+    public ImmutableResponseBody(byte[] bytes) {
+        this.bytes = bytes.clone();
+    }
 
-	public ImmutableResponseBody(ResponseBody other) {
-		this(other.getBytes());
-	}
+    public ImmutableResponseBody(ResponseBody other) {
+        this(other.getBytes());
+    }
 
-	@Override
-	public String toString() {
-		return bytes.length + " bytes in body";
-	}
+    @Override
+    public String toString() {
+        return bytes.length + " bytes in body";
+    }
 
-	@Override
-	public ImmutableResponseBody toImmutable() {
-		return this;
-	}
+    @Override
+    public ImmutableResponseBody toImmutable() {
+        return this;
+    }
 
-	@Override
-	public MutableResponseBody toMutable() {
-		return new MutableResponseBody(this);
-	}
+    @Override
+    public MutableResponseBody toMutable() {
+        return new MutableResponseBody(this);
+    }
 
-	@Override
-	public byte[] getBytes() {
-		return bytes.clone();
-	}
+    @Override
+    public byte[] getBytes() {
+        return bytes.clone();
+    }
 
-	@Override
-	public InputStream getInputStream() {
-		return new ByteArrayInputStream(bytes);
-	}
+    @Override
+    public InputStream getInputStream() {
+        return new ByteArrayInputStream(bytes);
+    }
 }

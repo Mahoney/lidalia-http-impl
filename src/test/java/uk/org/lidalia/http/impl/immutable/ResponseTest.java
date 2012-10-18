@@ -24,8 +24,8 @@ import uk.org.lidalia.http.impl.immutable.response.ImmutableResponseHeader;
 @PrepareForTest({ImmutableResponse.class})
 public class ResponseTest {
 
-	@Test
-	public void constructedWithNullHeaderThrowsIllegalArgumentException() throws Throwable {
+    @Test
+    public void constructedWithNullHeaderThrowsIllegalArgumentException() throws Throwable {
         shouldThrow(NullPointerException.class, new Callable<Void>() {
             @Override
             public Void call() throws Exception {
@@ -33,11 +33,11 @@ public class ResponseTest {
                 return null;
             }
         });
-	}
+    }
 
-	@Test
-	public void constructByStringWithNoDoubleLineBreakThrowsInvalidResponseException() throws Throwable {
-		InvalidResponseException exception = shouldThrow(InvalidResponseException.class, new Callable<Void>() {
+    @Test
+    public void constructByStringWithNoDoubleLineBreakThrowsInvalidResponseException() throws Throwable {
+        InvalidResponseException exception = shouldThrow(InvalidResponseException.class, new Callable<Void>() {
             @Override
             public Void call() throws Exception {
                 new ImmutableResponse("HTTP/1.1 200 OK\r\n");
@@ -45,35 +45,35 @@ public class ResponseTest {
             }
         });
 
-		assertEquals("Unable to parse [HTTP/1.1 200 OK\r\n] into a valid HTTP Response", exception.getMessage());
-		assertSame(IllegalArgumentException.class, exception.getCause().getClass());
-		assertEquals("A Response must have a double CLRF after the header", exception.getCause().getMessage());
-	}
+        assertEquals("Unable to parse [HTTP/1.1 200 OK\r\n] into a valid HTTP Response", exception.getMessage());
+        assertSame(IllegalArgumentException.class, exception.getCause().getClass());
+        assertEquals("A Response must have a double CLRF after the header", exception.getCause().getMessage());
+    }
 
-	@Test @Ignore
-	public void constructByStringDelegatesToHeaderAndBodyConstructByString() throws Exception {
-		ImmutableResponseHeader headerMock = createMockAndExpectNew(ImmutableResponseHeader.class, "header");
-		byte[] bytes = "body".getBytes();
-		ImmutableResponseBody bodyMock = createMockAndExpectNew(ImmutableResponseBody.class, bytes);
-		replayAll();
+    @Test @Ignore
+    public void constructByStringDelegatesToHeaderAndBodyConstructByString() throws Exception {
+        ImmutableResponseHeader headerMock = createMockAndExpectNew(ImmutableResponseHeader.class, "header");
+        byte[] bytes = "body".getBytes();
+        ImmutableResponseBody bodyMock = createMockAndExpectNew(ImmutableResponseBody.class, bytes);
+        replayAll();
 
-		ImmutableResponse immutableResponse = new ImmutableResponse(
-				"header\r\n" +
-				"\r\n" +
-				"body");
+        ImmutableResponse immutableResponse = new ImmutableResponse(
+                "header\r\n" +
+                "\r\n" +
+                "body");
 
-		assertSame(headerMock, immutableResponse.getHeader());
-		assertSame(bodyMock, immutableResponse.getBody());
+        assertSame(headerMock, immutableResponse.getHeader());
+        assertSame(bodyMock, immutableResponse.getBody());
 
-		verifyAll();
-	}
+        verifyAll();
+    }
 
-	@Test
-	public void toStringReturnsSemanticallySameResponseAsStringConstructorTakes() throws Exception {
-		String responseString = "HTTP/1.1 200 OK\r\n" +
-				"\r\n" +
-				"somebody";
-		ImmutableResponse immutableResponse = new ImmutableResponse(responseString);
-		assertEquals("HTTP/1.1 200 OK\r\n", immutableResponse.getHeader().toString());
-	}
+    @Test
+    public void toStringReturnsSemanticallySameResponseAsStringConstructorTakes() throws Exception {
+        String responseString = "HTTP/1.1 200 OK\r\n" +
+                "\r\n" +
+                "somebody";
+        ImmutableResponse immutableResponse = new ImmutableResponse(responseString);
+        assertEquals("HTTP/1.1 200 OK\r\n", immutableResponse.getHeader().toString());
+    }
 }

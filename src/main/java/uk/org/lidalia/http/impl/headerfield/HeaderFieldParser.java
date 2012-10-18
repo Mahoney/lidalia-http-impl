@@ -4,6 +4,6 @@ import uk.org.lidalia.http.api.headerfield.HeaderFieldValue;
 
 public interface HeaderFieldParser {
 
-	HeaderFieldValue parse(String headerFieldValueString);
-	
+    HeaderFieldValue parse(String headerFieldValueString);
+
 }
