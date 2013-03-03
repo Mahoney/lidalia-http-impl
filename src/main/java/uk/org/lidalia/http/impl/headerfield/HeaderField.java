@@ -10,7 +10,7 @@ import uk.org.lidalia.http.api.exception.IllegalHeaderFieldValueException;
 import uk.org.lidalia.http.api.headerfield.HeaderFieldName;
 import uk.org.lidalia.http.api.headerfield.HeaderFieldValue;
 
-public final class HeaderField implements uk.org.lidalia.http.api.headerfield.HeaderField {
+public final class HeaderField implements uk.org.lidalia.http.api.headerfield.HeaderField<HeaderField> {
 
     private final HeaderFieldName name;
     private final HeaderFieldValue value;

@@ -52,7 +52,7 @@ public class ResponseHeaderTest {
     }
 
     @Test
-    public void stringConstructorCanHaveEmptyReason() throws Throwable {
+    public void stringConstructorCanHaveEmptyReason() throws Exception {
         AbstractHeaderFields headerFieldsMock = createMockAndExpectNew(ImmutableHeaderFields.class, "header1: value\r\nheader2: value\r\n");
         replayAll();
 
@@ -65,7 +65,7 @@ public class ResponseHeaderTest {
     }
 
     @Test
-    public void stringConstructorCanHaveEmptyHeaders() throws Throwable {
+    public void stringConstructorCanHaveEmptyHeaders() throws Exception {
         AbstractHeaderFields headerFieldsMock = createMockAndExpectNew(ImmutableHeaderFields.class, "");
         replayAll();
 
@@ -78,7 +78,7 @@ public class ResponseHeaderTest {
     }
 
     @Test
-    public void stringConstructorCanHaveEmptyReasonAndEmptyHeaders() throws Throwable {
+    public void stringConstructorCanHaveEmptyReasonAndEmptyHeaders() throws Exception {
         AbstractHeaderFields headerFieldsMock = createMockAndExpectNew(ImmutableHeaderFields.class, "");
         replayAll();
 
@@ -91,30 +91,30 @@ public class ResponseHeaderTest {
     }
 
     @Test
-    public void stringConstructorThrowsInvalidHeaderExceptionWhenFirstElementInStatusLineIsNotHTTPVersion() throws Throwable {
+    public void stringConstructorThrowsInvalidHeaderExceptionWhenFirstElementInStatusLineIsNotHTTPVersion() {
         final String headerString = "blah 200 OK";
         assertStringConstructorThrowsInvalidHeaderException(headerString);
     }
 
     @Test
-    public void stringConstructorThrowsInvalidHeaderExceptionWhenOnlyOneElementInStatusLine() throws Throwable {
+    public void stringConstructorThrowsInvalidHeaderExceptionWhenOnlyOneElementInStatusLine() {
         final String headerString = "HTTP/1.1";
         assertStringConstructorThrowsInvalidHeaderException(headerString);
     }
 
     @Test
-    public void stringConstructorThrowsInvalidHeaderExceptionWhenNoSpaceAfterCode() throws Throwable {
+    public void stringConstructorThrowsInvalidHeaderExceptionWhenNoSpaceAfterCode() {
         final String headerString = "HTTP/1.1 200";
         assertStringConstructorThrowsInvalidHeaderException(headerString);
     }
 
     @Test
-    public void stringConstructorThrowsInvalidHeaderExceptionForFourDigitResponseCode() throws Throwable {
+    public void stringConstructorThrowsInvalidHeaderExceptionForFourDigitResponseCode() {
         final String headerString = "HTTP/1.1 0200 OK";
         assertStringConstructorThrowsInvalidHeaderException(headerString);
     }
 
-    private void assertStringConstructorThrowsInvalidHeaderException(final String headerString) throws Throwable {
+    private void assertStringConstructorThrowsInvalidHeaderException(final String headerString) {
         InvalidHeaderException exception = shouldThrow(InvalidHeaderException.class, new Callable<Void>() {
             @Override
             public Void call() throws Exception {

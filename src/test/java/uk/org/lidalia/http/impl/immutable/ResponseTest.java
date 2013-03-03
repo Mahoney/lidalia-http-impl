@@ -17,7 +17,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import uk.org.lidalia.http.api.exception.InvalidResponseException;
 import uk.org.lidalia.http.impl.immutable.response.ImmutableResponse;
-import uk.org.lidalia.http.impl.immutable.response.ImmutableResponseBody;
 import uk.org.lidalia.http.impl.immutable.response.ImmutableResponseHeader;
 
 @RunWith(PowerMockRunner.class)
@@ -25,18 +24,18 @@ import uk.org.lidalia.http.impl.immutable.response.ImmutableResponseHeader;
 public class ResponseTest {
 
     @Test
-    public void constructedWithNullHeaderThrowsIllegalArgumentException() throws Throwable {
+    public void constructedWithNullHeaderThrowsIllegalArgumentException() {
         shouldThrow(NullPointerException.class, new Callable<Void>() {
             @Override
             public Void call() throws Exception {
-                new ImmutableResponse((ImmutableResponseHeader) null, (ImmutableResponseBody) null);
+                new ImmutableResponse((ImmutableResponseHeader) null, null);
                 return null;
             }
         });
     }
 
     @Test
-    public void constructByStringWithNoDoubleLineBreakThrowsInvalidResponseException() throws Throwable {
+    public void constructByStringWithNoDoubleLineBreakThrowsInvalidResponseException() {
         InvalidResponseException exception = shouldThrow(InvalidResponseException.class, new Callable<Void>() {
             @Override
             public Void call() throws Exception {
@@ -54,7 +53,7 @@ public class ResponseTest {
     public void constructByStringDelegatesToHeaderAndBodyConstructByString() throws Exception {
         ImmutableResponseHeader headerMock = createMockAndExpectNew(ImmutableResponseHeader.class, "header");
         byte[] bytes = "body".getBytes();
-        ImmutableResponseBody bodyMock = createMockAndExpectNew(ImmutableResponseBody.class, bytes);
+        ImmutableBody bodyMock = createMockAndExpectNew(ImmutableBody.class, bytes);
         replayAll();
 
         ImmutableResponse immutableResponse = new ImmutableResponse(

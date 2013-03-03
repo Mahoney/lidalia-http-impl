@@ -2,8 +2,8 @@ package uk.org.lidalia.http.impl.mutable.response;
 
 import uk.org.lidalia.http.api.exception.InvalidResponseException;
 import uk.org.lidalia.http.api.immutable.response.ImmutableResponse;
+import uk.org.lidalia.http.api.mutable.MutableBody;
 import uk.org.lidalia.http.api.mutable.MutableHeaderFields;
-import uk.org.lidalia.http.api.mutable.response.MutableResponseBody;
 import uk.org.lidalia.http.api.mutable.response.MutableResponseHeader;
 import uk.org.lidalia.http.api.response.Code;
 import uk.org.lidalia.http.api.response.Reason;
@@ -11,18 +11,18 @@ import uk.org.lidalia.http.api.response.Response;
 import uk.org.lidalia.http.impl.response.AbstractResponse;
 import uk.org.lidalia.http.impl.response.ResponseStringParser;
 
-import static uk.org.lidalia.lang.RichOptional.fromNullable;
+import static com.google.common.base.Optional.fromNullable;
 
 public class MutableResponse extends AbstractResponse implements uk.org.lidalia.http.api.mutable.response.MutableResponse {
 
     private final MutableResponseHeader header;
-    private MutableResponseBody body;
+    private final MutableBody body;
 
     public MutableResponse(String responseString) throws InvalidResponseException {
         try {
             ResponseStringParser responseStringParser = new ResponseStringParser(responseString);
             this.header = new uk.org.lidalia.http.impl.mutable.response.MutableResponseHeader(responseStringParser.getHeaderString());
-            this.body = new uk.org.lidalia.http.impl.mutable.response.MutableResponseBody(responseStringParser.getBodyString().getBytes());
+            this.body = new uk.org.lidalia.http.impl.mutable.MutableBody(responseStringParser.getBodyString().getBytes());
         } catch (Exception e) {
             throw new InvalidResponseException(responseString, e);
         }
@@ -36,7 +36,7 @@ public class MutableResponse extends AbstractResponse implements uk.org.lidalia.
         this(header, null);
     }
 
-    public MutableResponse(MutableResponseHeader header, MutableResponseBody body) {
+    public MutableResponse(MutableResponseHeader header, uk.org.lidalia.http.api.mutable.MutableBody body) {
         this.header = fromNullable(header).or(new uk.org.lidalia.http.impl.mutable.response.MutableResponseHeader());
         this.body = body;
     }
@@ -57,19 +57,19 @@ public class MutableResponse extends AbstractResponse implements uk.org.lidalia.
         this(code, reason, headers, null);
     }
 
-    public MutableResponse(Code code, MutableResponseBody body) {
+    public MutableResponse(Code code, MutableBody body) {
         this(code, null, null, body);
     }
 
-    public MutableResponse(Code code, Reason reason, MutableResponseBody body) {
+    public MutableResponse(Code code, Reason reason, MutableBody body) {
         this(code, reason, null, body);
     }
 
-    public MutableResponse(Code code, MutableHeaderFields headers, MutableResponseBody body) {
+    public MutableResponse(Code code, MutableHeaderFields headers, MutableBody body) {
         this(code, null, headers, body);
     }
 
-    public MutableResponse(Code code, Reason reason, MutableHeaderFields headers, MutableResponseBody body) {
+    public MutableResponse(Code code, Reason reason, MutableHeaderFields headers, MutableBody body) {
         this(new uk.org.lidalia.http.impl.mutable.response.MutableResponseHeader(code, reason, headers), body);
     }
 
@@ -83,13 +83,13 @@ public class MutableResponse extends AbstractResponse implements uk.org.lidalia.
     }
 
     @Override
-    public MutableResponseBody getBody() {
-        return body;
+    public void setBody(uk.org.lidalia.http.api.mutable.MutableBody body) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public void setBody(MutableResponseBody body) {
-        this.body = body;
+    public MutableBody getBody() {
+        return body;
     }
 
     @Override

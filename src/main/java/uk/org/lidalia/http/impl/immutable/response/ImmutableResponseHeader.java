@@ -2,7 +2,7 @@ package uk.org.lidalia.http.impl.immutable.response;
 
 import static uk.org.lidalia.http.api.response.Code.Code;
 import static uk.org.lidalia.http.api.response.Reason.Reason;
-import static uk.org.lidalia.lang.RichOptional.fromNullable;
+import static com.google.common.base.Optional.fromNullable;
 
 import java.util.regex.Matcher;
 

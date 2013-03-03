@@ -8,6 +8,7 @@ import uk.org.lidalia.http.api.response.Code;
 import uk.org.lidalia.http.api.response.Reason;
 import uk.org.lidalia.http.api.response.Response;
 import uk.org.lidalia.http.impl.headerfield.HeaderField;
+import uk.org.lidalia.http.impl.immutable.ImmutableBody;
 import uk.org.lidalia.http.impl.mutable.response.MutableResponse;
 import uk.org.lidalia.http.impl.response.AbstractResponse;
 import uk.org.lidalia.http.impl.response.ResponseStringParser;
@@ -15,13 +16,13 @@ import uk.org.lidalia.http.impl.response.ResponseStringParser;
 public class ImmutableResponse extends AbstractResponse implements uk.org.lidalia.http.api.immutable.response.ImmutableResponse {
 
     private final uk.org.lidalia.http.api.immutable.response.ImmutableResponseHeader header;
-    private final uk.org.lidalia.http.api.immutable.response.ImmutableResponseBody body;
+    private final uk.org.lidalia.http.api.immutable.ImmutableBody body;
 
     public ImmutableResponse(String responseString) throws InvalidResponseException {
         try {
             ResponseStringParser responseStringParser = new ResponseStringParser(responseString);
             this.header = new ImmutableResponseHeader(responseStringParser.getHeaderString());
-            this.body = new ImmutableResponseBody(responseStringParser.getBodyString().getBytes());
+            this.body = new ImmutableBody(responseStringParser.getBodyString().getBytes());
         } catch (Exception e) {
             throw new InvalidResponseException(responseString, e);
         }
@@ -31,7 +32,7 @@ public class ImmutableResponse extends AbstractResponse implements uk.org.lidali
         this(header, null);
     }
 
-    public ImmutableResponse(uk.org.lidalia.http.api.immutable.response.ImmutableResponseHeader header, uk.org.lidalia.http.api.immutable.response.ImmutableResponseBody body) {
+    public ImmutableResponse(uk.org.lidalia.http.api.immutable.response.ImmutableResponseHeader header, uk.org.lidalia.http.api.immutable.ImmutableBody body) {
         Validate.notNull(header, "header is null");
         this.header = header;
         this.body = body;
@@ -53,19 +54,19 @@ public class ImmutableResponse extends AbstractResponse implements uk.org.lidali
         this(code, reason, headers, null);
     }
 
-    public ImmutableResponse(Code code, ImmutableResponseBody body) {
+    public ImmutableResponse(Code code, ImmutableBody body) {
         this(code, null, null, body);
     }
 
-    public ImmutableResponse(Code code, Reason reason, ImmutableResponseBody body) {
+    public ImmutableResponse(Code code, Reason reason, ImmutableBody body) {
         this(code, reason, null, body);
     }
 
-    public ImmutableResponse(Code code, ImmutableHeaderFields headers, ImmutableResponseBody body) {
+    public ImmutableResponse(Code code, ImmutableHeaderFields headers, ImmutableBody body) {
         this(code, null, headers, body);
     }
 
-    public ImmutableResponse(Code code, Reason reason, ImmutableHeaderFields headers, ImmutableResponseBody body) {
+    public ImmutableResponse(Code code, Reason reason, ImmutableHeaderFields headers, ImmutableBody body) {
         this(new ImmutableResponseHeader(code, reason, headers), body);
     }
 
@@ -81,11 +82,11 @@ public class ImmutableResponse extends AbstractResponse implements uk.org.lidali
         this(code, reason, null, headers);
     }
 
-    public ImmutableResponse(Code code, ImmutableResponseBody body, HeaderField... headers) {
+    public ImmutableResponse(Code code, ImmutableBody body, HeaderField... headers) {
         this(code, null, body, headers);
     }
 
-    public ImmutableResponse(Code code, Reason reason, ImmutableResponseBody body, HeaderField... headers) {
+    public ImmutableResponse(Code code, Reason reason, ImmutableBody body, HeaderField... headers) {
         this(new ImmutableResponseHeader(code, reason, headers), body);
     }
 
@@ -95,7 +96,7 @@ public class ImmutableResponse extends AbstractResponse implements uk.org.lidali
     }
 
     @Override
-    public uk.org.lidalia.http.api.immutable.response.ImmutableResponseBody getBody() {
+    public uk.org.lidalia.http.api.immutable.ImmutableBody getBody() {
         return body;
     }
 

@@ -8,7 +8,7 @@ import org.joda.time.Seconds;
 import uk.org.lidalia.http.api.Text;
 import uk.org.lidalia.http.api.exception.IllegalHeaderFieldValueException;
 
-public final class PositiveSeconds extends AbstractHeaderFieldValue<Seconds> {
+public final class PositiveSeconds extends AbstractHeaderFieldValue<Seconds, PositiveSeconds> {
 
     public PositiveSeconds(Seconds seconds) throws IllegalHeaderFieldValueException {
         super(seconds);
